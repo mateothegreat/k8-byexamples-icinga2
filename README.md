@@ -15,7 +15,7 @@
 
 > k8 by example -- straight to the point, simple execution.
 ``
-Deploy and zabbix will be up and running at http://zabbix.default.svc.cluster.local.
+Deploy and icinga will be up and running at http://icinga.default.svc.cluster.local.
 
 Still proxy'ing to get access to your cluster?!
 Take a poke at https://github.com/mateothegreat/k8-byexamples-openvpn, secure? dns? lan access? wat?
@@ -23,12 +23,13 @@ Take a poke at https://github.com/mateothegreat/k8-byexamples-openvpn, secure? d
 ## Install
 
 ```sh
-$ make install DB_SERVER_HOST=changeme MYSQL_USER=changeme MYSQL_PASSWORD=changeme
+$ make install 
 
-[ INSTALLING MANIFESTS/WEB-DEPLOYMENT.YAML ]: deployment "zabbix-web" configured
-[ INSTALLING MANIFESTS/SERVER-DEPLOYMENT.YAML ]: deployment "zabbix-server" configured
-[ INSTALLING MANIFESTS/WEB-SERVICE.YAML ]: service "zabbix-web" configured
-[ INSTALLING MANIFESTS/SERVER-SERVICE.YAML ]: service "zabbix-server" configured
+[ INSTALLING MANIFESTS/WEB-DEPLOYMENT.YAML ]: deployment "icinga2-web" created
+[ INSTALLING MANIFESTS/SERVER-DEPLOYMENT.YAML ]: deployment "icinga2-master" created
+[ INSTALLING MANIFESTS/WEB-SERVICE.YAML ]: service "icinga2-web" created
+[ INSTALLING MANIFESTS/SERVER-SERVICE.YAML ]: service "icinga2-master" created
+
 ```
 
 ## Usage
@@ -70,10 +71,8 @@ Tools:
 ```sh
 $ make delete
 
-[ DELETING MANIFESTS/DASHBOARDS-CONFIGMAP.YAML ]: configmap "grafana-import-dashboards" deleted
-[ DELETING MANIFESTS/DASHBOARDS-JOB.YAML ]: job "grafana-import-dashboards" deleted
-[ DELETING MANIFESTS/DEPLOYMENT.YAML ]: deployment "grafana-core" deleted
-[ DELETING MANIFESTS/INGRESS.YAML ]: No resources found
-[ DELETING MANIFESTS/PERSISTENTVOLUMECLAIM.YAML ]: persistentvolumeclaim "grafana-persistent-storage" deleted
-[ DELETING MANIFESTS/SERVICE.YAML ]: service "grafana" deleted
+[ DELETING MANIFESTS/WEB-DEPLOYMENT.YAML ]: deployment "icinga2-web" deleted
+[ DELETING MANIFESTS/SERVER-DEPLOYMENT.YAML ]: deployment "icinga2-master" deleted
+[ DELETING MANIFESTS/WEB-SERVICE.YAML ]: service "icinga2-web" deleted
+[ DELETING MANIFESTS/SERVER-SERVICE.YAML ]: service "icinga2-master" deleted
 ```
